@@ -68,6 +68,10 @@ export const UI = (io) => ({
     io.writeStderr(`\n${badge} ${msg}\n`);
   },
 
+  printInfo: (msg) => {
+    io.writeStderr(`${Style.dim('>')} ${msg}\n`);
+  },
+
   printUsageReport: (stats, path) => {
     if (path) {
       const files = stats.files !== undefined ? stats.files : stats;

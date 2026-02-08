@@ -7,7 +7,7 @@
     <img src="https://img.shields.io/npm/v/catport?style=flat-square&color=000" alt="npm" />
   </a>
   <a href="./LICENSE">
-    <img src="https://img.shields.io/npm/l/catport?style=flat-square&color=000" alt="license" />
+    <img src="https://img.shields.io/github/license/Jelodar/catport?style=flat-square&color=000" alt="license" />
   </a>
   <img src="https://img.shields.io/badge/dependencies-0-000?style=flat-square" alt="zero dependencies" />
   <img src="https://img.shields.io/badge/node-%3E%3D20-000?style=flat-square" alt="node" />
@@ -31,10 +31,10 @@ All while respecting `.gitignore`, token budgets, code minification, and filesys
 ```console
 $ catport -g HEAD -O minify -o context.md
 
-> Found 12 files changed in git
-> Optimizing (minify)... 
-> Token estimate: 14.2k
-> Wrote context.md (45ms)
+> Found 4 files changed in git (HEAD)
+> Optimizing (language-aware)...
+
+✔ Success Bundled 4 files (~5730 tokens) to context.md
 ```
 
 ---

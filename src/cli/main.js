@@ -5,6 +5,7 @@ import { Extractor } from '../core/extractor.js';
 import { NodeIO } from '../utils/io.js';
 import { Git } from '../utils/git.js';
 import { Logger } from '../utils/logger.js';
+import { Style } from '../utils/style.js';
 import { EXIT, APP } from '../config/constants.js';
 import { OPTIONS } from '../config/options.js';
 import { Optimizer } from '../optimizers/index.js';
@@ -53,8 +54,13 @@ export const CLI = {
             io.exit(EXIT.SUCCESS);
             return;
           }
-          
+
+          ui.printInfo(`Found ${Style.bold(changes.size)} files changed in git (${Style.cyan(config.gitDiff)})`);
           config.gitFiles = changes;
+        }
+
+        if (config.optimize !== 'none') {
+          ui.printInfo(`Optimizing (${Style.cyan(config.optimize === 'minify' ? 'language-aware' : config.optimize)})...`);
         }
 
         const stats = await Bundler.run(config, io, {
