@@ -1,0 +1,5 @@
+{
+  "name": "catport",
+  "description": "A minimalist, high-performance Node.js CLI utility for bundling and extracting files with support for multiple formats, filtering, and LLM-ready contexts.",
+  "requestFramePermissions": []
+}

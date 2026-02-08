@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+import { CLI } from '../src/cli/main.js';
+import { NodeIO } from '../src/utils/io.js';
+
+CLI.run(process.argv, NodeIO).catch(err => {
+  console.error(`FATAL: ${err.message}`);
+  process.exit(1);
+});

@@ -1,0 +1,48 @@
+{
+  "name": "catport",
+  "version": "1.0.0",
+  "description": "A high-performance, minimalist, and dependency-free CLI tool for bundling file contents or extracting files from a bundle.",
+  "main": "src/index.js",
+  "bin": {
+    "catport": "bin/catport"
+  },
+  "files": [
+    "src",
+    "bin",
+    "README.md",
+    "LICENSE",
+    "CONTRIBUTING.md",
+    "ARCHITECTURE.md"
+  ],
+  "scripts": {
+    "test": "node --test tests/**/*.test.js",
+    "test:watch": "node --test --watch tests/**/*.test.js",
+    "lint": "npx eslint src/ tests/ --max-warnings 0"
+  },
+  "keywords": [
+    "llm",
+    "context",
+    "bundle",
+    "devtools",
+    "serializer",
+    "ai",
+    "prompt-engineering",
+    "multipart",
+    "yaml",
+    "git",
+    "minifier",
+    "zero-dependency",
+    "cli"
+  ],
+  "author": "Reza Jelodar",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "globals": "^15.0.0"
+  }
+}
