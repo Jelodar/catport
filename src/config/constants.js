@@ -2,7 +2,7 @@ import { DEFAULT_IGNORES } from './ignores.js';
 
 export const APP = {
   NAME: 'catport',
-  VERSION: '1.0.2',
+  VERSION: '1.0.3',
   DESC: 'Deterministic filesystem serializer for LLM contexts'
 };
 
