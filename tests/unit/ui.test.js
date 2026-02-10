@@ -6,7 +6,7 @@ import { UI } from '../../src/cli/ui.js';
 import { createMockIO } from '../setup.js';
 
 describe('Unit: UI', () => {
-  const MOCK_APP = { NAME: 'test-app', VERSION: '1.0.1', DESC: 'desc' };
+  const MOCK_APP = { NAME: 'test-app', VERSION: '1.2.3', DESC: 'desc' };
   const MOCK_SCHEMA = {
     flag: { short: 'f', type: 'boolean', desc: 'flag desc', category: 'General' },
     opt: { short: 'o', type: 'string', desc: 'opt desc', metavar: 'VAL', category: 'General' },
@@ -20,7 +20,7 @@ describe('Unit: UI', () => {
     ui.printHeader(MOCK_APP);
     assert.ok(io._stdout.length > 0);
     assert.match(io._stdout.join(''), /test-app/);
-    assert.match(io._stdout.join(''), /v1\.0\.1/);
+    assert.match(io._stdout.join(''), /v1\.2\.3/);
     assert.match(io._stdout.join(''), /desc/);
   });
 

@@ -1,6 +1,6 @@
 {
   "name": "catport",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A high-performance, minimalist, and dependency-free CLI tool for bundling file contents or extracting files from a bundle.",
   "main": "src/index.js",
   "bin": {

@@ -1,0 +1,45 @@
+# repro_test.kt
+
+## Structure
+```text
+repro_test.kt
+```
+
+---
+
+### ◼◼◼ FILE: repro_test.kt
+```kt
+fun main(){println("Hello")}
+```
+
+
+### ◼◼◼ END OF FILES - INSTRUCTIONS FOLLOW
+**CRITICAL:** Rules for every file (follow strictly and EXACTLY):
+- Output only blocks starting with "### ◼◼◼ FILE: <path>" followed by a fenced code block.
+- Code block with language tag must follow immediately. Nothing else.
+- No bold, no "(updated / fixed)", no explanations, no extra text.
+
+## Examples
+
+## Correct:
+
+### ◼◼◼ FILE: src/components/Button.tsx
+```tsx
+import React from 'react';
+export const Button = () => <button>Click</button>;
+```
+
+### ◼◼◼ FILE: utils/helpers.ts
+```ts
+export const format = (n: number) => n.toFixed(2);
+```
+
+## Wrong:
+
+```
+**src/app.ts**          ✗
+File: config.json       ✗
+Here is the update:     ✗
+```
+
+Only output "### ◼◼◼ FILE: <path>" followed by a fenced code block. Nothing else.

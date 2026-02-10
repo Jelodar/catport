@@ -6,7 +6,7 @@
   <a href="https://www.npmjs.com/package/catport">
     <img src="https://img.shields.io/npm/v/catport?style=flat-square&color=000" alt="npm" />
   </a>
-  <a href="./LICENSE">
+  <a href="https://github.com/Jelodar/catport/blob/main/LICENSE">
     <img src="https://img.shields.io/github/license/Jelodar/catport?style=flat-square&color=000" alt="license" />
   </a>
   <img src="https://img.shields.io/badge/dependencies-0-000?style=flat-square" alt="zero dependencies" />
@@ -407,7 +407,7 @@ Use `--unsafe` (`-U`) **only** when you fully trust the source (e.g., internal a
 
 ## Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on the architectural philosophy (Unix-style pipes, zero-deps) and coding standards.
+We welcome contributions! Please see [CONTRIBUTING.md](https://github.com/Jelodar/catport/blob/main/CONTRIBUTING.md) for details on the architectural philosophy (Unix-style pipes, zero-deps) and coding standards.
 
 ## License
 

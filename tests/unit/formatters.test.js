@@ -34,6 +34,27 @@ describe('Unit: Formatters', () => {
     assert.strictEqual(parsed[0].content, content);
   });
 
+  it('Markdown: handles instruction marker inside content', () => {
+    const fmt = Formatter.get(FORMAT.MD);
+    // The marker string itself
+    const MARKER = '### ◼◼◼ END OF FILES - INSTRUCTIONS FOLLOW';
+    // File content containing the marker
+    const content = `const x = "${MARKER}";\nconsole.log(x);`;
+    const f = { rel: 'test.js', content };
+    
+    // Generate bundle WITHOUT adding instructions at the end (simulate -I)
+    // We manually construct it or just use fmt.file() and verify parse() works on it
+    // fmt.file() generates the file block.
+    const out = fmt.file(f);
+    
+    // Parse it back
+    const parsed = fmt.parse(out);
+    
+    assert.strictEqual(parsed.length, 1);
+    assert.strictEqual(parsed[0].path, 'test.js');
+    assert.strictEqual(parsed[0].content, content);
+  });
+
   // --- XML ---
   it('XML: handles CDATA split', () => {
     const fmt = Formatter.get(FORMAT.XML);

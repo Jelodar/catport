@@ -67,17 +67,22 @@ Only output "${FILE_MARKER} <path>" followed by a fenced code block. Nothing els
   },
 
   parse: (text, logger) => {
-    // Find the last occurrence of INSTRUCTION_MARKER to avoid splitting on markers inside file content
-    const lastInstructionIdx = text.lastIndexOf(INSTRUCTION_MARKER);
-    const processText = lastInstructionIdx !== -1 ? text.slice(0, lastInstructionIdx) : text;
-
     const files = [];
     let pos = 0;
 
     while (true) {
+      // Check if we hit the instructions block before the next file
+      const instrIdx = text.indexOf(INSTRUCTION_MARKER, pos);
+      
       FILE_MARKER_RE.lastIndex = pos;
-      const markerMatch = FILE_MARKER_RE.exec(processText);
+      const markerMatch = FILE_MARKER_RE.exec(text);
+      
       if (!markerMatch) {
+        break;
+      }
+
+      // If instructions appear before the next file marker, we are done
+      if (instrIdx !== -1 && instrIdx < markerMatch.index) {
         break;
       }
 
@@ -97,7 +102,7 @@ Only output "${FILE_MARKER} <path>" followed by a fenced code block. Nothing els
       }
 
       const afterMarkerPos = markerMatch.index + markerMatch[0].length;
-      const rest = processText.slice(afterMarkerPos);
+      const rest = text.slice(afterMarkerPos);
 
       const openFenceMatch = rest.match(/^([ \t]*)(`{3,}|~{3,})/m);
       if (!openFenceMatch) {
@@ -119,7 +124,7 @@ Only output "${FILE_MARKER} <path>" followed by a fenced code block. Nothing els
       const langLineMatch = afterFence.match(/^(.*\r?\n)/);
       const codeBlockStart = fenceStartPos + (langLineMatch?.[0].length ?? 0);
 
-      const closeMatch = fenceRE.exec(processText.slice(codeBlockStart));
+      const closeMatch = fenceRE.exec(text.slice(codeBlockStart));
       if (!closeMatch) {
         if (logger) {
           logger.warn(`Skipping file "${path}": Code block not closed (reached end of input).`);
@@ -131,7 +136,7 @@ Only output "${FILE_MARKER} <path>" followed by a fenced code block. Nothing els
 
       const closePosAbs = codeBlockStart + closeMatch.index + closeMatch[0].length;
 
-      let content = processText.slice(codeBlockStart, codeBlockStart + closeMatch.index);
+      let content = text.slice(codeBlockStart, codeBlockStart + closeMatch.index);
 
       if (indent) {
         const indentRE = new RegExp(`^${indent}`, 'gm');
@@ -143,7 +148,7 @@ Only output "${FILE_MARKER} <path>" followed by a fenced code block. Nothing els
         .replace(/\r/g, '\n')
         .trimEnd();
 
-      if (content.length > 0 || processText.slice(codeBlockStart, codeBlockStart + closeMatch.index).trim().length > 0) {
+      if (content.length > 0 || text.slice(codeBlockStart, codeBlockStart + closeMatch.index).trim().length > 0) {
         files.push({ path, content });
       } else {
         if (logger) {
@@ -153,7 +158,7 @@ Only output "${FILE_MARKER} <path>" followed by a fenced code block. Nothing els
 
       pos = closePosAbs;
 
-      const trailing = processText.slice(pos).match(/^\r?\n/);
+      const trailing = text.slice(pos).match(/^\r?\n/);
       if (trailing) {
         pos += trailing[0].length;
       }
